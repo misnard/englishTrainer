@@ -9,6 +9,7 @@ require (
 	github.com/hajimehoshi/go-mp3 v0.3.2
 	github.com/hajimehoshi/oto v0.7.3
 	github.com/joho/godotenv v1.3.0
+	github.com/tosone/minimp3 v1.0.1 // indirect
 	golang.org/x/net v0.0.0-20210726213435-c6fcb2dbf985 // indirect
 	google.golang.org/api v0.52.0 // indirect
 	google.golang.org/genproto v0.0.0-20210729151513-df9385d47c1b

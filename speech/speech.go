@@ -15,7 +15,7 @@ import (
 
 //LoadWordsData take in entry []*csvparse.WordCombination and convert csvparse.WordCombination to .mp3 file
 //If the word does not exists write it to data folder else skip download
-func LoadWordsData(words []*words.WordCombination) {
+func LoadWordsData(w []*words.WordCombination) {
 
 	c := make(chan bool)
 
@@ -24,12 +24,14 @@ func LoadWordsData(words []*words.WordCombination) {
 		os.Mkdir("data", 0755)
 	}
 
-	for _, w := range words {
-		fwFileName := "data/" + w.FrenchWord + ".mp3"
-		ewFileName := "data/" + w.EnglishWord + ".mp3"
+	w = append(w, &words.WordCombination{FrenchWord: "sample", EnglishWord: "sample"})
 
-		go convert(w.FrenchWord, fwFileName, "fr-FR", c)
-		go convert(w.EnglishWord, ewFileName, "en-US", c)
+	for _, word := range w {
+		fwFileName := "data/" + word.FrenchWord + ".mp3"
+		ewFileName := "data/" + word.EnglishWord + ".mp3"
+
+		go convert(word.FrenchWord, fwFileName, "fr-FR", c)
+		go convert(word.EnglishWord, ewFileName, "en-US", c)
 
 		fwOk, ewOk := <-c, <-c
 
