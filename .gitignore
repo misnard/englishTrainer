@@ -2,3 +2,4 @@ data
 .env
 englishTrainer
 data.csv
+.DS_Store
